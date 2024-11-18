@@ -1,38 +1,49 @@
-# sv
+# TodoList-GUI
 
-Everything you need to build a Svelte project, powered by [`sv`](https://github.com/sveltejs/cli).
+TodoList-GUI est un projet à but de formations, pour comprendre et appréhender le développement front par SvelteJS
 
-## Creating a project
+SvelteJS est un framework JS, qui permet de gérer les vues d'une application web.
+L'intérêt et l'avantage de Svelte, c'est qu'il est simple et ne fait que créer des fichiers JS et CSS optimisés à partir des fichiers et composants Svelte.
 
-If you're seeing this, you've probably already done this step. Congrats!
+## Lancement du projet
 
+*Vérifier que vous remplissez bien les prérequis technologiques*
+Installer toutes les dépendances du projet :  
 ```bash
-# create a new project in the current directory
-npx sv create
-
-# create a new project in my-app
-npx sv create my-app
+npm install
 ```
 
-## Developing
-
-Once you've created a project and installed dependencies with `npm install` (or `pnpm install` or `yarn`), start a development server:
-
+Lancer le serveur Vite pour accéder à la GUI
 ```bash
 npm run dev
-
-# or start the server and open the app in a new browser tab
-npm run dev -- --open
 ```
 
-## Building
+La documentation du projet se trouve [ici](docs/index.md)
 
-To create a production version of your app:
+## Prerequis
 
-```bash
-npm run build
-```
+- NPM
+- Docker
 
-You can preview the production build with `npm run preview`.
+Installation de NPM :  
+La procédure actuelle est d'installer NVM (node version manager), puis d'installer NodeJS (appelé Node), qui installera également NPM
+Pour cela, le mieux est de passer par la documentation de NPM :
+- [Documentation NPM](https://nodejs.org/en/download/package-manager)
 
-> To deploy your app, you may need to install an [adapter](https://svelte.dev/docs/kit/adapters) for your target environment.
+
+Installation de Docker :  
+Il faudra quoiqu'il arrive installer Docker. C'est un effort initial que de l'utiliser, mais cela permettra de gagner beaucoup de temps dans toutes les étapes de mise en production.
+Pour cela, le mieux est de passer par le script de Docker que l'on retrouve dans sa propre documentation : 
+- [Documentation Docker](https://docs.docker.com/engine/install/ubuntu/)
+
+
+## Création d'un projet
+
+Pour créer un projet SvelteJS installer `npx sv create ${appName}`
+
+Lors de la création d'un projet Svelte, vous avez 3 possibilités :
+- SvelteKit demo app : une application de démo
+- Skeleton project : juste ce qu'il faut pour pouvoir monter un application web SvelteJS
+- Library project : juste ce qu'il faut pour pouvoir créer un "module" Svelte ?
+
+Activer le typescript pour faciliter le développement et la stabilité de 
