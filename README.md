@@ -46,4 +46,6 @@ Lors de la création d'un projet Svelte, vous avez 3 possibilités :
 - Skeleton project : juste ce qu'il faut pour pouvoir monter un application web SvelteJS
 - Library project : juste ce qu'il faut pour pouvoir créer un "module" Svelte ?
 
-Activer le typescript pour faciliter le développement et la stabilité de 
+Activer le typescript pour faciliter le développement et la stabilité des composants
+
+Ou bien en une seule ligne : `npx sv create --template demo --types ts --no-add-ons ${appName}`

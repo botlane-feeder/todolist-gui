@@ -10,8 +10,23 @@ WIP
 
 Le triptyque de Svelte : composition des fichiers .svelte
 - script (possibilité d’ajouter un script module) : pour le JS (avec lang=ts)
-- markup : balises HTML
+- markup : balises HTML pour construire le DOM
 - style : pour le css
+
+Ce triptyque est dans l'ordre d'écriture dans un composant Svelte.
+D'abord le script, puis le markup et enfin le style, si on a besoin des trois.
+
+## Markup
+
+C'est de l'HTML basique, dans lequel on peut faire des liens avec des variables ou fonctions définies dans le script
+
+## Script
+
+C'est la partie où on retrouve le javascript du composant.
+Dedans on retrouvera :
+- des `import` comme : `import Square from "./Square.svelte"`
+- des variables déclarées : attention à déclarer également s'il s'agit d'un `$state` ou autre `rune`
+- des fonctions
 
 ## Runes
 
@@ -33,6 +48,8 @@ Pas besoin de les importer, les runes seront utilisées par le compilateur pour 
 - `$props()` : signifie properties, c'est la déclaration des propriétés passées à un composant Svelte
   - [Doc](https://svelte.dev/docs/svelte/$props) à relire plusieurs fois !
 - `$bindable()` : permet de déclarer une liaison d'une variable entre un parent et un enfant
+- `$inspect()`
+- `$host()`
 
 ### Exemples
 
@@ -110,7 +127,69 @@ WIP
 </button>
 ```
 
+## Events
 
+La [documentation](https://svelte.dev/docs/svelte/basic-markup#Events) Svelte 5 sur les events.
 
+## Bind
 
+Les données sont habituelles envoyées d'un composant Parent à un composant Enfant, afin que la gestion de l'affichage soit géré par ce composant Enfant.  
+Cependant, on peut souhaiter que le composant Enfant puisse modifier le contenu de la donnée, alors on `bind:` la donnée :  
+- côté Parent, la donnée passée en paramètre de la balise doit être `bind:` : `<Child bind:count={myPArentCount}>`
+  - si la donnée a le même nom côté Parent qu'Enfant, on peut raccourcir l'écriture : `<Child bind:count>`
+- côté Enfant, la donnée doit être récupérée comme `$bindable()`, dans l'espace script : `let {count = $bindable()} = $props()`
+
+L'intérêt du *bind* est dans l'utilisation avec une balise <input> ou <selected>, afin de mettre à jour immédiatement *reactivity* le champ et la variable.
+
+### Exemples
+
+child.svelte
+```svelte
+<script>
+let {inputValue = $bindable()} = $props;
+</script>
+<input type="range" value={inputValue}/>
+```
+
+parent.svelte
+```svelte
+<script type="ts">
+  let percentage:number = $state(0);
+</script>
+<div>
+The number of <Child bind:inputValue={percentage}/> is {percentage}
+</div>
+```
+
+## Complément du markup par le JS
+
+### If
+
+```svelte
+{#if expression}
+...
+{:else if expression}
+...
+{:else}
+...
+{/if}
+```
+
+### Each
+
+```svelte
+{#each expression as name, index} //Le index n'est pas obligatoire
+	...
+{/each}
+```
+Possibilité d'ajouter un `{:else}`, sera exécuter si le tableau est vide.
+
+### Key
+
+## Stores
+
+Le principe de Store est principalement pour les versions avec Svelte5.
+Depuis cette version, il vaut mieux utiliser les runes, quitte à créer une variable externe à importer qui est basée sur des runes.
+
+Cependant dans certains cas, il 
 
